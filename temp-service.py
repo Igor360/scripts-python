@@ -18,19 +18,22 @@ db = MySQLdb.connect(host="localhost", user="root",passwd="password", db="HN_dat
 cur = db.cursor()
  
 def tempRead():
-    t = open(temp_sensor, 'r')
-    lines = t.readlines()
-    t.close()
- 
-    temp_output = lines[1].find('t=')
-    if temp_output != -1:
-        temp_string = lines[1].strip()[temp_output+2:]
-        temp_c = float(temp_string)/1000.0
-    return round(temp_c,1)
- 
+    try:
+        t = open(temp_sensor, 'r')
+        lines = t.readlines()
+        t.close()
+        temp_output = lines[1].find('t=')
+        if temp_output != -1:
+            temp_string = lines[1].strip()[temp_output+2:]
+            temp_c = float(temp_string)/1000.0
+        return round(temp_c,1)
+    except:
+        return None
+
 while True:
     temp = tempRead()
-    print temp
+    if temp is None:
+        continue
     datetimeWrite = (time.strftime("%Y-%m-%d ") + time.strftime("%H:%M:%S"))
     print datetimeWrite
     sql = ("""INSERT INTO sensor_data (created_at,value, name, code) VALUES (%s, %s, %s, %s)""",(datetimeWrite, temp, name, code))
@@ -41,12 +44,10 @@ while True:
         # Commit your changes in the database
         db.commit()
         print "Write Complete"
- 
     except:
         # Rollback in case there is any error
         db.rollback()
         print "Failed writing to database"
- 
     cur.close()
     db.close()
     break
