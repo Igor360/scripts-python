@@ -13,7 +13,7 @@ DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 26
 
 # Variables for MySQL
-db = MySQLdb.connect(host="localhost", user="root",passwd="password", db="HN_database")
+db = MySQLdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
 cur = db.cursor()
  
 def tempRead():
