@@ -19,18 +19,20 @@ cur = db.cursor()
 def tempRead():
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
     if temperature is not None and humidity is not None:
-        return [round(temperature, 1), round(humidity, 1)]
+        return round(temperature, 1), round(humidity, 1)
     else:
         return None
  
 
 while True:    
-    temp, humidity = tempRead()
+    temp = tempRead()
     if temp is None:
-        continue
+	continue
+    print temp
+    temp1, humidity = temp
     datetimeWrite = (time.strftime("%Y-%m-%d ") + time.strftime("%H:%M:%S"))
     print datetimeWrite
-    sql = ("""INSERT INTO sensor_data (created_at,value, name, code) VALUES (%s, %s, %s, %s)""",(datetimeWrite, temp, 'temperature', code))
+    sql = ("""INSERT INTO sensor_data (created_at,value, name, code) VALUES (%s, %s, %s, %s)""",(datetimeWrite, temp1, 'temperature', code))
     sql2 = ("""INSERT INTO sensor_data (created_at,value, name, code) VALUES (%s, %s, %s, %s)""",(datetimeWrite, humidity, 'hudaminity', code))
     try:
         print "Writing to database..."
