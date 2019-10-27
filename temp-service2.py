@@ -47,4 +47,5 @@ while True:
  
     cur.close()
     db.close()
+    time.sleep(30)
     break

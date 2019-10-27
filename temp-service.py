@@ -50,4 +50,5 @@ while True:
         print "Failed writing to database"
     cur.close()
     db.close()
+    time.sleep(30)
     break
