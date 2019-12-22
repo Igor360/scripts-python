@@ -6,7 +6,7 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QLineEdit
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem, QFormLayout
 import sys
-import MySQLdb as mdb
+import pymysql as mdb
  
  
 class Window(QWidget):
