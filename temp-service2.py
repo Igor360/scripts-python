@@ -24,7 +24,7 @@ cur = db.cursor()
 def tempRead():
     result = instance.read()
     if result is None:
-        continue
+        return None
     if result.temperature is not None and result.humidity is not None:
         return round(temperature, 1), round(humidity, 1)
     else:
