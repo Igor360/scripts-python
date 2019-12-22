@@ -26,7 +26,7 @@ def tempRead():
     if result is None:
         return None
     if result.temperature is not None and result.humidity is not None:
-        return round(temperature, 1), round(humidity, 1)
+        return round(result.temperature, 1), round(result.humidity, 1)
     else:
         return None
  
