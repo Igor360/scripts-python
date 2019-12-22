@@ -10,11 +10,6 @@ from time import strftime
 
 code = 'dth11-temp'
 
-#Variables for sensor
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 21
-
-
 # initialize GPIO
 PIN2 = port.PA6
 gpio.init()
