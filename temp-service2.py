@@ -22,9 +22,9 @@ db = MySQLdb.connect(host="localhost", user="admin",passwd="password", db="HN_da
 cur = db.cursor()
  
 def tempRead():
-    result = instance.read()
-    if result is not None:
-        return round(result.temperature, 1), round(result.humidity, 1)
+    humidity, temperature = instance.read()
+    if temperature is not None and humidity is not None:
+        return round(temperature, 1), round(humidity, 1)
     else:
         return None
  
