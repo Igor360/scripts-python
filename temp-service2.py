@@ -2,7 +2,9 @@ import time
 import datetime
 import glob
 import MySQLdb
-import Adafruit_DHT
+from pyA20.gpio import gpio
+from pyA20.gpio import port
+import dht
 from time import strftime
  
 
@@ -12,14 +14,22 @@ code = 'dth11-temp'
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 21
 
+
+# initialize GPIO
+PIN2 = port.PA6
+gpio.init()
+ 
+# read data using pin
+instance = dht.DHT(pin=PIN2)
+
 # Variables for MySQL
 db = MySQLdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
 cur = db.cursor()
  
 def tempRead():
-    humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
-    if temperature is not None and humidity is not None:
-        return round(temperature, 1), round(humidity, 1)
+    result = instance.read()
+    if result is not None:
+        return round(result.temperature, 1), round(result.humidity, 1)
     else:
         return None
  
