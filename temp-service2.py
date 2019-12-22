@@ -10,7 +10,7 @@ code = 'dth11-temp'
 
 #Variables for sensor
 DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 26
+DHT_PIN = 25
 
 # Variables for MySQL
 db = MySQLdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
