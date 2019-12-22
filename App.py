@@ -61,7 +61,7 @@ class Window(QWidget):
  
     def DBConnection(self):
         try:
-			db = mdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
+            db = mdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
             cur = db.cursor()
             sql = "SELECT name, code, value FROM sensor_data;"
             cur.execute(sql)
@@ -75,7 +75,7 @@ class Window(QWidget):
  
     def Search(self):
         try:
-			db = mdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
+            db = mdb.connect(host="localhost", user="admin",passwd="password", db="HN_database")
             cur = db.cursor()
             sql = "SELECT name, code, value FROM sensor_data WHERE name LIKE '%{0}%';".format(self.edit.text())
             cur.execute(sql)
